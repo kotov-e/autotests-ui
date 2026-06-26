@@ -1,6 +1,9 @@
-
+import pytest
 from playwright.sync_api import sync_playwright, expect
 
+
+@pytest.mark.regression
+@pytest.mark.authorization
 def test_wrong_email_or_password_authorization():
     with sync_playwright() as playwright:
         browser = playwright.firefox.launch(headless=False)
@@ -8,7 +11,7 @@ def test_wrong_email_or_password_authorization():
 
         page.goto("https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/login")
 
-        input_email = page.get_by_test_id('login-form-email-input').locator('input') # найди по test-id элемент и внутри него input
+        input_email = page.get_by_test_id('login-form-email-input').locator('input')
         input_email.fill('user.name@gmail.com')
 
         input_password = page.get_by_test_id('login-form-password-input').locator('input')
