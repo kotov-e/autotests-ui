@@ -1,46 +1,27 @@
-from playwright.sync_api import sync_playwright, expect
+from playwright.sync_api import expect, Page
 import pytest
-
 
 
 @pytest.mark.regression
 @pytest.mark.registration
-def test_successful_registration():
+def test_successful_registration(chromium_page: Page):
 
-    with sync_playwright() as playwright:
-        browser = playwright.chromium.launch(headless=False)
-        context = browser.new_context()
-        page = context.new_page()
+    chromium_page.goto('https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/registration')
 
-        page.goto('https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/registration')
+    button_registration = chromium_page.get_by_test_id('registration-page-registration-button')
+    expect(button_registration).to_be_disabled()
 
-        button_registration = page.get_by_test_id('registration-page-registration-button')
-        expect(button_registration).to_be_disabled()
+    email_input = chromium_page.get_by_test_id('registration-form-email-input').locator('input')
+    email_input.fill('user.name@gmail.com')
 
-        email_input = page.get_by_test_id('registration-form-email-input').locator('input')
-        email_input.fill('user.name@gmail.com')
+    username_input = chromium_page.get_by_test_id('registration-form-username-input').locator('input')
+    username_input.fill('username')
 
-        username_input = page.get_by_test_id('registration-form-username-input').locator('input')
-        username_input.fill('username')
+    password_input = chromium_page.get_by_test_id('registration-form-password-input').locator('input')
+    password_input.fill('password')
 
-        password_input = page.get_by_test_id('registration-form-password-input').locator('input')
-        password_input.fill('password')
+    expect(button_registration).not_to_be_disabled()
+    button_registration.click()
 
-        expect(button_registration).not_to_be_disabled()
-        button_registration.click()
-
-        dashboard_title = page.get_by_test_id('dashboard-toolbar-title-text')
-        expect(dashboard_title).to_be_visible()
-
-        context.storage_state(path='browser-state.json')
-
-    with sync_playwright() as playwright:
-        browser = playwright.chromium.launch(headless=False)
-
-        context = browser.new_context(storage_state='browser-state.json')
-
-        page = context.new_page()
-
-        page.goto('https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/dashboard')
-
-        page.wait_for_timeout(2000)
+    dashboard_title = chromium_page.get_by_test_id('dashboard-toolbar-title-text')
+    expect(dashboard_title).to_be_visible()
