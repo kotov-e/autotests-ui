@@ -1,11 +1,15 @@
 from playwright.sync_api import Page, expect
-
 from pages.base_page import BasePage
+from components.navigation.navbar_component import NavbarComponent
+from components.navigation.sidebar_component import SideBarComponent
 
 
 class CourseslistPage(BasePage):
     def __init__(self, page: Page):
         super().__init__(page)
+
+        self.navbar = NavbarComponent(page)
+        self.sidebar = SideBarComponent(page)
 
         """
         Заголовок курса
@@ -80,7 +84,7 @@ class CourseslistPage(BasePage):
         expect(self.course_max_text.nth(index)).to_have_text(f"Max score: {max_score}")
 
         expect(self.course_min_text.nth(index)).to_be_visible()
-        expect(self.course_min_text.nth(index)).to_have_text(f"Max score: {min_score}")
+        expect(self.course_min_text.nth(index)).to_have_text(f"Min score: {min_score}")
 
         expect(self.course_estimated_time_text.nth(index)).to_be_visible()
         expect(self.course_estimated_time_text.nth(index)).to_have_text(f"Estimated time: {estimated_time}")
