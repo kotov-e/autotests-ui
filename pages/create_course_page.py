@@ -13,16 +13,14 @@ class CreateCoursePage(BasePage):
         # Блок верхнего блока
         self.navbar = NavbarComponent(page)
 
-        # Блок создания занятий
-        self.create_course_form = CreateCourseExerciseFormComponent(page)
-
         # Блок превью и загрузки картинки курса
         self.image_upload_widget = ImageUploadWidgetComponent(page, identifier='create-course-preview')
-
 
         # Блок, который отображается, когда в курсе не заданий
         self.exercises_empty_view = EmptyViewComponent(page, identifier='create-course-exercises')
 
+        # Блок создания занятий
+        self.create_exercise_form = CreateCourseExerciseFormComponent(page)
 
         # Заголовок создаваемого курса
         self.create_course_title = page.get_by_test_id('create-course-toolbar-title-text')
@@ -115,4 +113,3 @@ class CreateCoursePage(BasePage):
             title='There is no exercises',
             description='Click on "Create exercise" button to create new exercise'
         )
-
