@@ -12,7 +12,7 @@ class RegistrationFormComponent(BaseComponent):
         self.registration_button = page.get_by_test_id('registration-page-registration-button')
         self.login_link = page.get_by_test_id('registration-page-login-link')
 
-    def fill_registration_form(self, email: str, username: str, password: str):
+    def fill(self, email: str, username: str, password: str):
         """
         Метод для заполнения формы регистрация
         :param email: email пользователя

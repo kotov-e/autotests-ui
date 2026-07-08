@@ -13,7 +13,7 @@ class LoginFormComponent(BaseComponent):
         self.registration_link = page.get_by_test_id('login-page-registration-link')
         self.wrong_email_or_password_alert = page.get_by_test_id('login-page-wrong-email-or-password-alert')
 
-    def fill_login_form(self, email: str, password: str):
+    def fill(self, email: str, password: str):
         """
         Метод для заполнения формы логин
         :param email: email пользователя
