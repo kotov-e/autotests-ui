@@ -23,7 +23,7 @@ class CourseViewComponent(BaseComponent):
             max_score: str,
             min_score: str,
             estimated_time: str
-        ):
+    ):
         expect(self.image.nth(index)).to_be_visible()
 
         expect(self.title.nth(index)).to_be_visible()
