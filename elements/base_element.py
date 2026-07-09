@@ -12,8 +12,8 @@ class BaseElement:
 
     def __init__(self, page: Page, locator: str, name: str):
         self.page = page
-        self.name = name
         self.locator = locator
+        self.name = name
 
     def get_locator(self, **kwargs) -> Locator:
         """

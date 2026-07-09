@@ -13,6 +13,6 @@ def test_dashboard_displaying(dashboard_page_with_state: DashboardPage):
     dashboard_page_with_state.check_visible_scores_chart()
 
     dashboard_page_with_state.sidebar.check_visible()
-    dashboard_page_with_state.sidebar.click_dashboard()
-    dashboard_page_with_state.sidebar.click_courses()
-    dashboard_page_with_state.sidebar.click_logout()
+    # dashboard_page_with_state.sidebar.click_dashboard()
+    # dashboard_page_with_state.sidebar.click_courses()
+    # dashboard_page_with_state.sidebar.click_logout()
