@@ -9,29 +9,29 @@ class CoursesViewMenuComponent(BaseComponent):
 
         self.menu_button = Button(
             page=page,
-            locator='course-views-menu-button',
+            locator='course-view-menu-button',
             name='Menu'
         )
 
         self.edit_menu_button = Button(
             page=page,
-            locator='course-views-edit-menu-item',
+            locator='course-view-edit-menu-item',
             name='Edit'
         )
 
         self.delete_menu_button = Button(
             page=page,
-            locator='course-views-delete-menu-item',
+            locator='course-view-delete-menu-item',
             name='Delete'
         )
 
-    def click_edit(self, index: int):
+    def click_edit(self, index: int = 0):
         self.menu_button.click(nth=index)
 
         self.edit_menu_button.check_visible(nth=index)
         self.edit_menu_button.click(nth=index)
 
-    def click_delete(self, index: int):
+    def click_delete(self, index: int = 0):
         self.menu_button.click(nth=index)
 
         self.delete_menu_button.check_visible(nth=index)
