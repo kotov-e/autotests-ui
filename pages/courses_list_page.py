@@ -16,6 +16,11 @@ class CoursesListPage(BasePage):
         self.sidebar = SideBarComponent(page)
 
         """
+        Заголовок курса
+        """
+        self.toolbar_view = CoursesListToolbarViewComponent(page)
+
+        """
         Карточка курса
         """
         self.course_view = CourseViewComponent(page)
@@ -25,10 +30,6 @@ class CoursesListPage(BasePage):
         """
         self.empty_view = EmptyViewComponent(page, identifier='courses-list')
 
-        """
-        Заголовок курса
-        """
-        self.toolbar_view = CoursesListToolbarViewComponent(page)
 
     def check_visible_empty_view(self):
         self.empty_view.check_visible(
