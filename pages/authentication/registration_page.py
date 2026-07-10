@@ -1,3 +1,5 @@
+import re
+
 from components.authentivation.registration_form_component import RegistrationFormComponent
 from elements.button import Button
 from elements.link import Link
@@ -27,7 +29,6 @@ class RegistrationPage(BasePage):
         """
         Метод клика по кнопке REGISTRATION
         """
-        self.registration_button.check_enabled()
         self.registration_button.click()
 
     def click_login_link(self):
@@ -35,5 +36,6 @@ class RegistrationPage(BasePage):
         Метод перехода по ссылке link
         """
         self.login_link.click()
+        self.check_current_url(re.compile(".*/#/auth/login"))
 
 
