@@ -6,13 +6,14 @@ import pytest
 def test_dashboard_displaying(dashboard_page_with_state: DashboardPage):
     dashboard_page_with_state.visit('https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/dashboard')
     dashboard_page_with_state.navbar.check_visible(username='username')
-    dashboard_page_with_state.dashboard_toolbar_view.check_visible()
+    dashboard_page_with_state.sidebar.check_visible()
+
+    dashboard_page_with_state.dashboard_title.check_visible()
     dashboard_page_with_state.check_visible_student_chart()
     dashboard_page_with_state.check_visible_activities_chart()
     dashboard_page_with_state.check_visible_courses_chart()
     dashboard_page_with_state.check_visible_scores_chart()
 
-    dashboard_page_with_state.sidebar.check_visible()
-    # dashboard_page_with_state.sidebar.click_dashboard()
-    # dashboard_page_with_state.sidebar.click_courses()
-    # dashboard_page_with_state.sidebar.click_logout()
+    dashboard_page_with_state.sidebar.click_dashboard()
+    dashboard_page_with_state.sidebar.click_courses()
+    dashboard_page_with_state.sidebar.click_logout()

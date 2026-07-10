@@ -8,18 +8,20 @@ class Button(BaseElement):
     Класс элемента button
     """
 
-    def check_enabled(self, **kwargs) -> None:
+    def check_enabled(self, nth: int = 0, **kwargs) -> None:
         """
         Метод проверки, что кнопка доступна
+        :param nth: индекс элемента по порядку
         :param kwargs: параметры для форматирования локатора
         """
-        locator = self.get_locator(**kwargs)
+        locator = self.get_locator(nth, **kwargs)
         expect(locator).to_be_enabled()
 
-    def check_disabled(self, **kwargs) -> None:
+    def check_disabled(self, nth: int = 0, **kwargs) -> None:
         """
         Метод проверки, что кнопка не доступна
+        :param nth: индекс элемента по порядку
         :param kwargs: параметры для форматирования локатора
         """
-        locator = self.get_locator(**kwargs)
+        locator = self.get_locator(nth, **kwargs)
         expect(locator).to_be_disabled()

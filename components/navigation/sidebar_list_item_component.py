@@ -12,33 +12,31 @@ class SideBarListItemComponent(BaseComponent):
     def __init__(self, page: Page, identifier: str):
         super().__init__(page)
 
-        self.identifier = identifier
-
         self.icon = Icon(
             page=page,
-            locator='{identifier}-drawer-list-item-icon',
+            locator=f'{identifier}-drawer-list-item-icon',
             name='Icon'
         )
 
         self.title = Text(
             page=page,
-            locator='{identifier}-drawer-list-item-title-text',
+            locator=f'{identifier}-drawer-list-item-title-text',
             name='Title'
         )
 
         self.button = Button(
             page=page,
-            locator='{identifier}-drawer-list-item-button',
+            locator=f'{identifier}-drawer-list-item-button',
             name='Button'
         )
 
     def check_visible(self, title: str):
-        self.icon.check_visible(identifier=self.identifier)
+        self.icon.check_visible()
 
-        self.title.check_visible(identifier=self.identifier)
-        self.title.check_have_text(title, identifier=self.identifier)
+        self.title.check_visible()
+        self.title.check_have_text(title)
 
-        self.button.check_visible(identifier=self.identifier)
+        self.button.check_visible()
 
     def navigate(self, expected_url: Pattern[str]):
         self.button.click()

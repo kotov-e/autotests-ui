@@ -15,38 +15,42 @@ class BaseElement:
         self.locator = locator
         self.name = name
 
-    def get_locator(self, **kwargs) -> Locator:
+    def get_locator(self, nth: int = 0, **kwargs) -> Locator:
         """
         Возвращает объект Locator для текущего элемента
+        :param nth: индекс элемента по порядку
         :param kwargs: параметры для форматирования локатора (динамические значения)
         :return: объект-локатор
         """
         locator = self.locator.format(**kwargs)
-        return self.page.get_by_test_id(locator)
+        return self.page.get_by_test_id(locator).nth(nth)
 
-    def click(self, **kwargs) -> None:
+    def click(self, nth: int = 0, **kwargs) -> None:
         """
         Клик по элементу
+        :param nth: индекс элемента по порядку
         :param kwargs: параметры для форматирования локатора
         """
         # "ленивая" инициализация
-        locator = self.get_locator(**kwargs)
+        locator = self.get_locator(nth, **kwargs)
         # инициализация только во время вызова метода click
         locator.click()
 
-    def check_visible(self, **kwargs) -> None:
+    def check_visible(self, nth: int = 0, **kwargs) -> None:
         """
         Проверка видимости элемента
+        :param nth: индекс элемента по порядку
         :param kwargs: параметры для форматирования локатора
         """
-        locator = self.get_locator(**kwargs)
+        locator = self.get_locator(nth, **kwargs)
         expect(locator).to_be_visible()
 
-    def check_have_text(self, text: str, **kwargs) -> None:
+    def check_have_text(self, text: str, nth: int = 0, **kwargs) -> None:
         """
         Проверка, что элемент содержит ожидаемый текст
+        :param nth: индекс элемента по порядку
         :param text: ожидаемый текст
         :param kwargs: параметры для форматирования локатора
         """
-        locator = self.get_locator(**kwargs)
+        locator = self.get_locator(nth, **kwargs)
         expect(locator).to_have_text(text)

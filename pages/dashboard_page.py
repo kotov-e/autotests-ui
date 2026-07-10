@@ -13,21 +13,24 @@ class DashboardPage(BasePage):
         self.navbar = NavbarComponent(page)
         self.sidebar = SideBarComponent(page)
 
-        self.dashboard_toolbar_view = DashboardToolbarViewComponent(page)
+        self.dashboard_title = DashboardToolbarViewComponent(page)
 
-        self.students_chart_view = ChartViewComponent(page, identifier='students', chart_type='bar')
-        self.activities_chart_view = ChartViewComponent(page, identifier='activities', chart_type='line')
-        self.courses_chart_view = ChartViewComponent(page, identifier='courses', chart_type='pie')
-        self.scores_chart_view = ChartViewComponent(page, identifier='scores', chart_type='scatter')
+        self.students_chart = ChartViewComponent(page, identifier='students', chart_type='bar')
+        self.activities_chart = ChartViewComponent(page, identifier='activities', chart_type='line')
+        self.courses_chart = ChartViewComponent(page, identifier='courses', chart_type='pie')
+        self.scores_chart = ChartViewComponent(page, identifier='scores', chart_type='scatter')
 
-    def check_visible_student_chart(self, title='Students'):
-        self.students_chart_view.check_visible(title)
+    def check_visible_dashboard_title(self):
+        self.dashboard_title.check_visible()
 
-    def check_visible_activities_chart(self, title='Activities'):
-        self.activities_chart_view.check_visible(title)
+    def check_visible_student_chart(self):
+        self.students_chart.check_visible('Students')
 
-    def check_visible_courses_chart(self, title='Courses'):
-        self.courses_chart_view.check_visible(title)
+    def check_visible_activities_chart(self):
+        self.activities_chart.check_visible('Activities')
 
-    def check_visible_scores_chart(self, title='Scores'):
-        self.scores_chart_view.check_visible(title)
+    def check_visible_courses_chart(self):
+        self.courses_chart.check_visible('Courses')
+
+    def check_visible_scores_chart(self):
+        self.scores_chart.check_visible('Scores')
