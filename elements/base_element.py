@@ -1,3 +1,4 @@
+import allure
 from playwright.sync_api import Page, Locator, expect
 
 
@@ -15,6 +16,10 @@ class BaseElement:
         self.locator = locator
         self.name = name
 
+    @property
+    def type_of(self) -> str:
+        return "base element"
+
     def get_locator(self, nth: int = 0, **kwargs) -> Locator:
         """
         Возвращает объект Locator для текущего элемента
@@ -23,7 +28,8 @@ class BaseElement:
         :return: объект-локатор
         """
         locator = self.locator.format(**kwargs)
-        return self.page.get_by_test_id(locator).nth(nth)
+        with allure.step(f'Getting locator with "data-testid={locator}" at index "{nth}"'):
+            return self.page.get_by_test_id(locator).nth(nth)
 
     def click(self, nth: int = 0, **kwargs) -> None:
         """
