@@ -1,3 +1,5 @@
+import allure
+
 from components.base_component import BaseComponent
 from playwright.sync_api import Page, expect
 
@@ -23,6 +25,7 @@ class NavbarComponent(BaseComponent):
             name='Welcome title'
         )
 
+    @allure.step('Checking visibe navbar')
     def check_visible(self, username: str) -> None:
         """
         Проверка видимости
