@@ -5,4 +5,7 @@ class Text(BaseElement):
     """
     Класс элемента text
     """
-    pass
+
+    @property
+    def type_of(self) -> str:
+        return "text"

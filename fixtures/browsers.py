@@ -1,3 +1,5 @@
+from symtable import Function
+
 import pytest
 
 from playwright.sync_api import Page, Playwright, expect
@@ -34,3 +36,13 @@ def chromium_page_with_state(initialize_browser_state: None, playwright: Playwri
     context = browser.new_context(storage_state='browser-state.json')
     yield context.new_page()
     context.close()
+
+
+def decorator(func):
+    def wrapper(func, *args, **kwargs) -> Function:
+        print("Setup")
+        func(*args, **kwargs)
+        print("Teardown")
+        return wrapper(func)
+    return func
+
