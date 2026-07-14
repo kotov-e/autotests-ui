@@ -5,4 +5,7 @@ class Link(BaseElement):
     """
     Класс элемента link
     """
-    pass
+
+    @property
+    def type_of(self) -> str:
+        return "link"

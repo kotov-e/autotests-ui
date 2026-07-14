@@ -37,10 +37,11 @@ class BaseElement:
         :param nth: индекс элемента по порядку
         :param kwargs: параметры для форматирования локатора
         """
-        # "ленивая" инициализация
-        locator = self.get_locator(nth, **kwargs)
-        # инициализация только во время вызова метода click
-        locator.click()
+        with allure.step(f'Clicking {self.type_of} "{self.name}"'):
+            # "ленивая" инициализация
+            locator = self.get_locator(nth, **kwargs)
+            # инициализация только во время вызова метода click
+            locator.click()
 
     def check_visible(self, nth: int = 0, **kwargs) -> None:
         """
@@ -48,8 +49,9 @@ class BaseElement:
         :param nth: индекс элемента по порядку
         :param kwargs: параметры для форматирования локатора
         """
-        locator = self.get_locator(nth, **kwargs)
-        expect(locator).to_be_visible()
+        with allure.step(f'Checking that {self.type_of} "{self.name}" is visible'):
+            locator = self.get_locator(nth, **kwargs)
+            expect(locator).to_be_visible()
 
     def check_have_text(self, text: str, nth: int = 0, **kwargs) -> None:
         """
@@ -58,5 +60,6 @@ class BaseElement:
         :param text: ожидаемый текст
         :param kwargs: параметры для форматирования локатора
         """
-        locator = self.get_locator(nth, **kwargs)
-        expect(locator).to_have_text(text)
+        with allure.step(f'Checking that {self.type_of} "{self.name}" has text "{text}"'):
+            locator = self.get_locator(nth, **kwargs)
+            expect(locator).to_have_text(text)
