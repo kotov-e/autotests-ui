@@ -1,6 +1,6 @@
 import re
 
-from components.authentivation.registration_form_component import RegistrationFormComponent
+from components.authentiсation.registration_form_component import RegistrationFormComponent
 from elements.button import Button
 from elements.link import Link
 from pages.base_page import BasePage
