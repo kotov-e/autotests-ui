@@ -1,17 +1,14 @@
 from symtable import Function
 
 import pytest
+import allure
 
 from playwright.sync_api import Page, Playwright, expect
 
 from pages.authentication.registration_page import RegistrationPage
+from _pytest.fixtures import SubRequest
 
-
-@pytest.fixture
-def chromium_page(playwright: Playwright) -> Page:
-    browser = playwright.chromium.launch(headless=False)
-    yield browser.new_page()
-    browser.close()
+from tools.playwright.pages import inittialize_playwright_page
 
 
 @pytest.fixture(scope="session")
@@ -30,19 +27,18 @@ def initialize_browser_state(playwright: Playwright) -> None:
     browser.close()
 
 
+@pytest.fixture
+def chromium_page(request: SubRequest, playwright: Playwright) -> Page:
+    yield from inittialize_playwright_page(
+        playwright,
+        test_name=request.node.name
+    )
+
+
 @pytest.fixture()
-def chromium_page_with_state(initialize_browser_state: None, playwright: Playwright) -> Page:
-    browser = playwright.chromium.launch(headless=False)
-    context = browser.new_context(storage_state='browser-state.json')
-    yield context.new_page()
-    context.close()
-
-
-def decorator(func):
-    def wrapper(func, *args, **kwargs) -> Function:
-        print("Setup")
-        func(*args, **kwargs)
-        print("Teardown")
-        return wrapper(func)
-    return func
-
+def chromium_page_with_state(request: SubRequest, initialize_browser_state, playwright: Playwright) -> Page:
+    yield from inittialize_playwright_page(
+        playwright,
+        test_name=request.node.name,
+        storage_state='browser-state.json'
+    )
