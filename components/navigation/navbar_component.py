@@ -25,7 +25,7 @@ class NavbarComponent(BaseComponent):
             name='Welcome title'
         )
 
-    @allure.step('Checking visibe navbar')
+    @allure.step('Checking visible navbar')
     def check_visible(self, username: str) -> None:
         """
         Проверка видимости

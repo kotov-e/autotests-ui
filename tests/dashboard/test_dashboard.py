@@ -1,3 +1,4 @@
+from config import Settings, settings
 from pages.dashboard.dashboard_page import DashboardPage
 import pytest
 import allure
@@ -23,7 +24,7 @@ class TestDashboard:
     @allure.severity(Severity.NORMAL)
     def test_dashboard_displaying(self, dashboard_page_with_state: DashboardPage):
         dashboard_page_with_state.visit(AppRoute.DASHBOARD)
-        dashboard_page_with_state.navbar.check_visible(username='username')
+        dashboard_page_with_state.navbar.check_visible(username=settings.test_user.username)
         dashboard_page_with_state.sidebar.check_visible()
 
         dashboard_page_with_state.dashboard_toolbar_view.check_visible()
