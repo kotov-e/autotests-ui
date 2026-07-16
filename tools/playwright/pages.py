@@ -1,6 +1,8 @@
 import allure
 from playwright.sync_api import Playwright
 from config import settings, Browser
+from tools.playwright.mocks import mock_static_resourses
+
 
 def initialize_playwright_page(
         playwright: Playwright,
@@ -17,6 +19,7 @@ def initialize_playwright_page(
     )
     context.tracing.start(screenshots=True, snapshots=True, sources=True)
     page = context.new_page()
+    mock_static_resourses(page)
 
     yield page
 
