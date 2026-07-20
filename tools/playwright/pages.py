@@ -18,6 +18,7 @@ def initialize_playwright_page(
         record_video_dir=settings.videos_dir
     )
     context.tracing.start(screenshots=True, snapshots=True, sources=True)
+
     page = context.new_page()
     mock_static_resources(page)
 

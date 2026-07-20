@@ -59,6 +59,7 @@ class BaseElement:
         :param kwargs: параметры для форматирования локатора
         """
         step = f'Checking that {self.type_of} "{self.name}" is visible'
+
         with allure.step(step):
             locator = self.get_locator(nth, **kwargs)
             logger.info(step)
@@ -72,6 +73,7 @@ class BaseElement:
         :param kwargs: параметры для форматирования локатора
         """
         step = f'Checking that {self.type_of} "{self.name}" has text "{text}"'
+
         with allure.step(step):
             locator = self.get_locator(nth, **kwargs)
             logger.info(step)
