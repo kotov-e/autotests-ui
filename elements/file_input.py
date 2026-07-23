@@ -25,5 +25,5 @@ class FileInput(BaseElement):
 
         with allure.step(step):
             locator = self.get_locator(nth, **kwargs)
-            logger.info()
+            logger.info(step)
             locator.set_input_files(file)
