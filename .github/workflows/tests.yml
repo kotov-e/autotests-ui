@@ -49,6 +49,6 @@ jobs:
       - name: Deploy repost to Github Pages
         uses: peaceiris/actions-gh-pages@v4
         env:
-          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           PUBLISH_BRANCH: gh-pages
           PUBLISH_DIR: allure-history
