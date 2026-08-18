@@ -26,6 +26,7 @@ from tools.routes import AppRoute
 @allure.parent_suite(AllureStory.AUTHORIZATION)
 class TestAuthorization:
 
+    #@pytest.flaky(rerun=2, delay=1)
     @allure.tag(AllureTag.USER_LOGIN)
     @allure.title('User login with correct email and password')
     @allure.severity(Severity.BLOCKER)
