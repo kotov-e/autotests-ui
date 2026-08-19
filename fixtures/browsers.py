@@ -1,12 +1,10 @@
 import pytest
-
-from playwright.sync_api import Page, Playwright, expect
-
-from pages.authentication.registration_page import RegistrationPage
 from _pytest.fixtures import SubRequest
+from playwright.sync_api import Page, Playwright
 
-from tools.playwright.pages import initialize_playwright_page
 from config import settings
+from pages.authentication.registration_page import RegistrationPage
+from tools.playwright.pages import initialize_playwright_page
 from tools.routes import AppRoute
 
 

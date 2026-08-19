@@ -1,7 +1,8 @@
-from typing import Pattern
+from re import Pattern
 
-from playwright.sync_api import Page, expect
 import allure
+from playwright.sync_api import Page, expect
+
 from tools.logger import get_logger
 
 logger = get_logger("BASE_PAGE")

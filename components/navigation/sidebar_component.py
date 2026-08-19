@@ -1,9 +1,9 @@
-import allure
-
-from components.base_component import BaseComponent
-from playwright.sync_api import Page
 import re
 
+import allure
+from playwright.sync_api import Page
+
+from components.base_component import BaseComponent
 from components.navigation.sidebar_list_item_component import SideBarListItemComponent
 
 

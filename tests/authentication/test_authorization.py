@@ -1,17 +1,17 @@
-import pytest
+from typing import ClassVar
+
 import allure
+import pytest
+from allure_commons.types import Severity
 
 from config import settings
 from pages.authentication.login_page import LoginPage
 from pages.authentication.registration_page import RegistrationPage
 from pages.dashboard.dashboard_page import DashboardPage
-
-from tools.allure.tags import AllureTag
 from tools.allure.epic import AllureEpic
 from tools.allure.features import AllureFeature
 from tools.allure.stories import AllureStory
-from allure_commons.types import Severity
-
+from tools.allure.tags import AllureTag
 from tools.routes import AppRoute
 
 
@@ -24,24 +24,25 @@ from tools.routes import AppRoute
 @allure.suite(AllureEpic.LMS)
 @allure.sub_suite(AllureFeature.AUTHENTICATION)
 @allure.parent_suite(AllureStory.AUTHORIZATION)
-class TestAuthorization:
-
-    #@pytest.flaky(rerun=2, delay=1)
+class testAuthorization:
+    # @pytest.flaky(rerun=2, delay=1)
     @allure.tag(AllureTag.USER_LOGIN)
-    @allure.title('User login with correct email and password')
+    @allure.title("User login with correct email and password")
     @allure.severity(Severity.BLOCKER)
-    def test_successful_authorization(self,
-                                      login_page: LoginPage,
-                                      registration_page: RegistrationPage,
-                                      dashboard_page: DashboardPage
-                                      ):
+    def test_successful_authorization(
+        self,
+        login_page: LoginPage,
+        registration_page: RegistrationPage,
+        dashboard_page: DashboardPage,
+    ):
         registration_page.visit(AppRoute.REGISTRATION)
 
         registration_page.registration_button.check_disabled()
         registration_page.registration_form.fill(
             email=settings.test_user.email,
             username=settings.test_user.username,
-            password=settings.test_user.password)
+            password=settings.test_user.password,
+        )
         registration_page.registration_button.check_enabled()
         registration_page.click_registration_button()
 
@@ -52,8 +53,7 @@ class TestAuthorization:
 
         login_page.login_button.check_disabled()
         login_page.login_form.fill(
-            email=settings.test_user.email,
-            password=settings.test_user.password
+            email=settings.test_user.email, password=settings.test_user.password
         )
         login_page.login_button.check_enabled()
         login_page.click_login_button()
@@ -62,34 +62,38 @@ class TestAuthorization:
         dashboard_page.navbar.check_visible(username=settings.test_user.username)
         dashboard_page.sidebar.check_visible()
 
-    users_invalid_data = [
+    users_invalid_data: ClassVar[list] = [
         ("user.name@gmail.com", "password"),
         ("user.name@gmail.com", "  "),
-        ("  ", "password")
+        ("  ", "password"),
     ]
 
     @allure.tag(AllureTag.USER_LOGIN)
-    @allure.title('User login with wrong email or password')
+    @allure.title("User login with wrong email or password")
     @allure.severity(Severity.CRITICAL)
-    @pytest.mark.xdist_group(name='authorization-group')
-    @pytest.mark.parametrize('email, password', users_invalid_data)
-    def test_wrong_email_or_password_authorization(self,
-                                                   login_page: LoginPage,
-                                                   email: str,
-                                                   password: str):
+    @pytest.mark.xdist_group(name="authorization-group")
+    @pytest.mark.parametrize("email, password", users_invalid_data)
+    def test_wrong_email_or_password_authorization(
+        self, login_page: LoginPage, email: str, password: str
+    ):
         login_page.visit(AppRoute.LOGIN)
         login_page.login_form.fill(email=email, password=password)
         login_page.click_login_button()
         login_page.check_visible_wrong_email_or_password_alert()
 
     @allure.tag(AllureTag.NAVIGATION)
-    @allure.title('Navigate from login page to registration page')
+    @allure.title("Navigate from login page to registration page")
     @allure.severity(Severity.NORMAL)
-    def test_navigate_from_authorization_to_registration(self,
-                                                         login_page: LoginPage,
-                                                         registration_page: RegistrationPage
-                                                         ):
+    def test_navigate_from_authorization_to_registration(
+        self, login_page: LoginPage, registration_page: RegistrationPage
+    ):
         login_page.visit(AppRoute.LOGIN)
         login_page.click_registration_link()
-        registration_page.registration_form.check_visible(email="", username="", password="")
+        registration_page.registration_form.check_visible(
+            email="", username="", password=""
+        )
+
+
+
+
         registration_page.registration_button.check_disabled()

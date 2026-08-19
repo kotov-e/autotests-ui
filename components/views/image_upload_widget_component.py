@@ -1,6 +1,6 @@
-from components.base_component import BaseComponent
-from playwright.sync_api import Page, expect
+from playwright.sync_api import Page
 
+from components.base_component import BaseComponent
 from components.views.empy_view_component import EmptyViewComponent
 from elements.button import Button
 from elements.file_input import FileInput

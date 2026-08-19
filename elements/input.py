@@ -1,8 +1,8 @@
-from playwright.sync_api import expect, Locator
+import allure
+from playwright.sync_api import Locator, expect
 from ui_coverage_tool import ActionType
 
 from elements.base_element import BaseElement
-import allure
 from tools.logger import get_logger
 
 logger = get_logger("INPUT_ELEMENT")

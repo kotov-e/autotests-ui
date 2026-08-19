@@ -1,7 +1,8 @@
-from pydantic_settings import BaseSettings, SettingsConfigDict
-from pydantic import EmailStr, HttpUrl, FilePath, DirectoryPath, BaseModel
 from enum import Enum
 from typing import Self
+
+from pydantic import BaseModel, DirectoryPath, EmailStr, FilePath, HttpUrl
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Browser(str, Enum):

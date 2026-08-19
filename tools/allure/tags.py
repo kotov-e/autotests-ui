@@ -1,10 +1,11 @@
 from enum import Enum
 
+
 class AllureTag(str, Enum):
     REGRESSION = 'REGRESSION'
     SMOKE = 'SMOKE'
     COURSES = "COURSES"
-    DASHBOARD = "REGRESSION"
+    DASHBOARD = "DASHBOARD"
     USER_LOGIN = "USER_LOGIN"
     NAVIGATION = "NAVIGATION"
     REGISTRATION = "REGISTRATION"

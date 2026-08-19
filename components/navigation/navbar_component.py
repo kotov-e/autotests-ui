@@ -1,8 +1,7 @@
 import allure
+from playwright.sync_api import Page
 
 from components.base_component import BaseComponent
-from playwright.sync_api import Page, expect
-
 from elements.text import Text
 
 

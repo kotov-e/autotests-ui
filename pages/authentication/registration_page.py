@@ -1,10 +1,13 @@
 import re
 
-from components.authentiсation.registration_form_component import RegistrationFormComponent
+from playwright.sync_api import Page
+
+from components.authentiсation.registration_form_component import (
+    RegistrationFormComponent,
+)
 from elements.button import Button
 from elements.link import Link
 from pages.base_page import BasePage
-from playwright.sync_api import Page, expect
 
 
 class RegistrationPage(BasePage):

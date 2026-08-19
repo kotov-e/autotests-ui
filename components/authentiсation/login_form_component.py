@@ -1,8 +1,8 @@
-from playwright.sync_api import Page, expect
+import allure
+from playwright.sync_api import Page
 
 from components.base_component import BaseComponent
 from elements.input import Input
-import allure
 
 
 class LoginFormComponent(BaseComponent):

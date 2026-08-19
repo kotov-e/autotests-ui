@@ -1,8 +1,9 @@
 import allure
-from playwright.sync_api import Page, Locator, expect
-from tools.logger import get_logger
-from elements.ui_coverage import tracker
+from playwright.sync_api import Locator, Page, expect
 from ui_coverage_tool import ActionType, SelectorType
+
+from elements.ui_coverage import tracker
+from tools.logger import get_logger
 
 logger = get_logger("BASE_ELEMENT")
 
@@ -40,8 +41,7 @@ class BaseElement:
             return self.page.get_by_test_id(locator).nth(nth)
 
     def get_raw_locator(self, nth: int = 0, **kwargs) -> str:
-        return f"//*[@data-testid='{self.locator.format(**kwargs)}'][{nth+1}]" # XPATH начинается с 1
-
+        return f"//*[@data-testid='{self.locator.format(**kwargs)}'][{nth + 1}]"  # XPATH начинается с 1
 
     def track_coverage(self, action_type: ActionType, nth: int = 0, **kwargs):
         tracker.track_coverage(

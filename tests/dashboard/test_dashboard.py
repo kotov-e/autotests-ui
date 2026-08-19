@@ -1,14 +1,13 @@
-from config import Settings, settings
-from pages.dashboard.dashboard_page import DashboardPage
-import pytest
 import allure
-from tools.allure.tags import AllureTag
+import pytest
+from allure_commons.types import Severity
 
+from config import settings
+from pages.dashboard.dashboard_page import DashboardPage
 from tools.allure.epic import AllureEpic
 from tools.allure.features import AllureFeature
 from tools.allure.stories import AllureStory
-from allure_commons.types import Severity
-
+from tools.allure.tags import AllureTag
 from tools.routes import AppRoute
 
 
