@@ -1,0 +1,6 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","1581","Check displaying of empty courses list","tests.courses","2026-08-19","passed","2026-08-19","TestCourses","test_courses","",""
+"","2143","Edit course","tests.courses","2026-08-19","passed","2026-08-19","TestCourses","test_courses","",""
+"","1274","Check displaying of dashboard page","tests.dashboard","2026-08-19","passed","2026-08-19","TestDashboard","test_dashboard","",""
+"","1898","Create course","tests.courses","2026-08-19","passed","2026-08-19","TestCourses","test_courses","",""
+"","1782","Registration with correct email, username and password","tests.authentication","2026-08-19","passed","2026-08-19","TestRegistration","test_registration","",""
